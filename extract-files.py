@@ -18,14 +18,16 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
+    'device/motorola/fogos',
     'device/motorola/sm6375-common',
     'hardware/motorola',
-    'vendor/qcom/opensource/audio-hal/primary-hal',
-    'device/qcom/wlan',
-    'vendor/qcom/opensource/commonsys-intf/display',
-    'vendor/qcom/opensource/commonsys-intf/display',
-    'vendor/qcom/opensource/dataservices',
-    'vendor/qcom/opensource/commonsys-intf/display',
+    'vendor/motorola/fogos',
+    'vendor/motorola/sm6375-common',
+    'vendor/qcom/common/vendor/adreno/s',
+    'vendor/qcom/common/vendor/display/5.10',
+    'vendor/qcom/common/vendor/media/5.10',
+    'vendor/qcom/common/vendor/perf',
+    'vendor/qcom/common/vendor/wlan',
 ]
 
 def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
