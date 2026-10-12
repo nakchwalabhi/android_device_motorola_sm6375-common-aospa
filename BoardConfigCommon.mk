@@ -178,3 +178,13 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
 include vendor/motorola/sm6375-common/BoardConfigVendor.mk
+
+# DTBO image. build/core/Makefile requires $(BOARD_PREBUILT_DTBOIMAGE) for
+# dtbo.img when BOARD_KERNEL_SEPARATED_DTBO is set, and AOSPA's kernel build
+# never produces it. Pack the kernel's compiled overlays with mkdtboimg.
+KERNEL_DTBO_OUT := $(PRODUCT_OUT)/obj/kernel/motorola/sm6375
+MKDTBOIMG := $(HOST_OUT_EXECUTABLES)/mkdtboimg
+
+$(PRODUCT_OUT)/prebuilt_dtbo.img: $(PRODUCT_OUT)/kernel $(MKDTBOIMG)
+	@echo "Building dtbo.img from kernel overlays"
+	$(MKDTBOIMG) create $@ --page_size=$(BOARD_KERNEL_PAGESIZE) $$(find $(KERNEL_DTBO_OUT)/arch/arm64/boot/dts -type f -name "*.dtbo" | sort)
