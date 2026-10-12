@@ -193,3 +193,9 @@ $(PRODUCT_OUT)/prebuilt_dtbo.img: $(KERNEL_DTBO_OUT)/arch/arm64/boot/Image
 # kernel_definitions.mk, which this tree never includes. Copy the built Image.
 $(PRODUCT_OUT)/kernel: $(KERNEL_DTBO_OUT)/arch/arm64/boot/Image
 	cp $< $@
+
+# DTB image. build/core/Makefile wants $(INSTALLED_DTBIMAGE_TARGET) when
+# BOARD_INCLUDE_DTB_IN_BOOTIMG is set; AOSPA defines no producer for it.
+# Concatenate the kernel's compiled dtbs (as Lineage's kernel.mk does).
+$(PRODUCT_OUT)/dtb.img: $(KERNEL_DTBO_OUT)/arch/arm64/boot/Image
+	cat $$(find $(KERNEL_DTBO_OUT)/arch/arm64/boot/dts -type f -name "*.dtb" | sort) > $@
