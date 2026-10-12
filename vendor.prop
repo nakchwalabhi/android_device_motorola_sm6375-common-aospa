@@ -315,7 +315,6 @@ ro.surface_flinger.max_frame_buffer_acquired_buffers=4
 ro.surface_flinger.max_virtual_display_dimension=4096
 ro.surface_flinger.protected_contents=true
 ro.surface_flinger.set_touch_timer_ms=200
-ro.surface_flinger.supports_background_blur=1
 ro.surface_flinger.use_color_management=true
 ro.surface_flinger.use_content_detection_for_refresh_rate=true
 ro.surface_flinger.use_smart_90_for_video=true
@@ -323,8 +322,6 @@ ro.surface_flinger.wcg_composition_dataspace=143261696
 
 # USB
 sys.usb.mtp.batchcancel=1
-vendor.usb.controller=4e00000.dwc3
-vendor.usb.device=4e00000.ssusb
 vendor.usb.diag.func.name=ffs
 vendor.usb.dpl.inst.name=dpl
 vendor.usb.qdss.inst.name=qdss
