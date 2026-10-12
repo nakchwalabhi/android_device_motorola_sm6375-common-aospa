@@ -106,7 +106,7 @@ DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest.xml
 BOARD_USES_METADATA_PARTITION := true
 
 # Partitions
-# -include vendor/aospa/target/board/BoardConfigReservedSize.mk  # AOSPA has no such file; sizes set below
+# -include vendor/aospa/target/board/BoardConfigReservedSize.mk  # AOSPA has no such file
 BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
 BOARD_DTBOIMG_PARTITION_SIZE := 25165824
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 100663296
@@ -149,22 +149,10 @@ BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
-
-ifneq (,$(AVB_CUSTOM_KEY_PATH))
-BOARD_AVB_ALGORITHM := $(AVB_CUSTOM_ALGORITHM)
-BOARD_AVB_KEY_PATH := $(AVB_CUSTOM_KEY_PATH)
-else
-AVB_CUSTOM_ALGORITHM := SHA256_RSA2048
-AVB_CUSTOM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-endif
-
-ifneq ($(WITH_AVB),true)
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
-endif
-
 BOARD_AVB_VBMETA_SYSTEM := system system_ext product
-BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := $(AVB_CUSTOM_ALGORITHM)
-BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := $(AVB_CUSTOM_KEY_PATH)
+BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
+BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 
 # WiFi

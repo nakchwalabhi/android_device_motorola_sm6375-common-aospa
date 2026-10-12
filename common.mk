@@ -28,7 +28,6 @@ PRODUCT_PACKAGES += \
     FrameworksResCommon \
     FrameworksResProduct \
     FrameworksResTarget \
-    LineageApertureAppCommon \
     NcmTetheringOverlay \
     SettingsProviderResCommon \
     SystemUIResCommon \
@@ -135,6 +134,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fastbootd
 
+# Framework detect
+PRODUCT_PACKAGES += \
+    libvndfwk_detect_jni.qti.vendor # Needed by CNE app
+
 # GPS
 PRODUCT_PACKAGES += \
     android.hardware.gnss@2.1-impl-qti \
@@ -150,7 +153,10 @@ PRODUCT_PACKAGES += \
     flp.conf \
     gnss_antenna_info.conf \
     gps.conf \
-    izat.conf
+    izat.conf \
+    lowi.conf \
+    sap.conf \
+    xtwifi.conf
 
 # Health
 PRODUCT_PACKAGES += \
@@ -205,7 +211,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/media_codecs_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2.xml \
     $(LOCAL_PATH)/media/media_codecs_performance_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_c2.xml
 
-$(call soong_config_set_bool,stagefright,target_disable_thumbnail_block_model,true)
+$(call soong_config_set,stagefright,target_disable_thumbnail_block_model,true)
 
 # Moto hardware
 PRODUCT_PACKAGES += \
