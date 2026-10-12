@@ -183,8 +183,7 @@ include vendor/motorola/sm6375-common/BoardConfigVendor.mk
 # dtbo.img when BOARD_KERNEL_SEPARATED_DTBO is set, and AOSPA's kernel build
 # never produces it. Pack the kernel's compiled overlays with mkdtboimg.
 KERNEL_DTBO_OUT := $(PRODUCT_OUT)/obj/kernel/motorola/sm6375
-MKDTBOIMG := $(HOST_OUT_EXECUTABLES)/mkdtboimg
 
-$(PRODUCT_OUT)/prebuilt_dtbo.img: $(KERNEL_DTBO_OUT)/arch/arm64/boot/Image $(MKDTBOIMG)
+$(PRODUCT_OUT)/prebuilt_dtbo.img: $(KERNEL_DTBO_OUT)/arch/arm64/boot/Image
 	@echo "Building dtbo.img from kernel overlays"
-	$(MKDTBOIMG) create $@ --page_size=$(BOARD_KERNEL_PAGESIZE) $$(find $(KERNEL_DTBO_OUT)/arch/arm64/boot/dts -type f -name "*.dtbo" | sort)
+	out/host/linux-x86/bin/mkdtimg create $@ --page_size=$(BOARD_KERNEL_PAGESIZE) $$(find $(KERNEL_DTBO_OUT)/arch/arm64/boot/dts -type f -name "*.dtbo" | sort)
