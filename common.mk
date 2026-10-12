@@ -12,7 +12,6 @@ TARGET_BOARD_PLATFORM := holi
 PRODUCT_PACKAGES += \
     vendor_bt_firmware_mountpoint \
     vendor_dsp_mountpoint \
-    vendor_firmware_mnt_mountpoint \
     vendor_fsg_mountpoint
 
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
