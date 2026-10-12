@@ -185,6 +185,6 @@ include vendor/motorola/sm6375-common/BoardConfigVendor.mk
 KERNEL_DTBO_OUT := $(PRODUCT_OUT)/obj/kernel/motorola/sm6375
 MKDTBOIMG := $(HOST_OUT_EXECUTABLES)/mkdtboimg
 
-$(PRODUCT_OUT)/prebuilt_dtbo.img: $(PRODUCT_OUT)/kernel $(MKDTBOIMG)
+$(PRODUCT_OUT)/prebuilt_dtbo.img: $(KERNEL_DTBO_OUT)/arch/arm64/boot/Image $(MKDTBOIMG)
 	@echo "Building dtbo.img from kernel overlays"
 	$(MKDTBOIMG) create $@ --page_size=$(BOARD_KERNEL_PAGESIZE) $$(find $(KERNEL_DTBO_OUT)/arch/arm64/boot/dts -type f -name "*.dtbo" | sort)
