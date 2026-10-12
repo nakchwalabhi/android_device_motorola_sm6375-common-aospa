@@ -147,11 +147,13 @@ include device/qcom/sepolicy_vndr/SEPolicy.mk
 include hardware/motorola/sepolicy/qti/SEPolicy.mk
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
-# Lineage sepolicy: provides hal_attribute_lineage and the lineage_* HAL
-# domains that the Motorola sepolicy augments (lineage touch/powershare).
-# AOSPA does not ship device/lineage/sepolicy or wire it in.
--include device/lineage/sepolicy/common/sepolicy.mk
--include device/lineage/sepolicy/qcom/sepolicy.mk
+# NOTE: Lineage's sepolicy tree is deliberately NOT included here.
+# vendor/aospa/sepolicy/public/attributes already declares hal_lineage_health
+# (AOSPA ships it) and vendor/aospa/sepolicy/sepolicy.mk wires those dirs in,
+# so also pulling in Lineage's tree declares that attribute twice and
+# checkpolicy aborts with "Duplicate declaration of type". The device
+# sepolicy references no lineage_* domains, and hal_attribute_lineage itself
+# is defined locally in hardware/motorola/sepolicy/qti/public/attributes.
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
