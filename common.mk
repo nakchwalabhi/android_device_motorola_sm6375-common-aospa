@@ -4,6 +4,10 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Platform (must be defined before AOSPA's aospa-target.mk inherits
+# device/qcom/common/common.mk, which requires TARGET_BOARD_PLATFORM).
+TARGET_BOARD_PLATFORM := holi
+
 # Partitions
 PRODUCT_PACKAGES += \
     vendor_bt_firmware_mountpoint \
@@ -19,8 +23,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Installs gsi keys into ramdisk, to boot a GSI with verified boot.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
-# Add common definitions for Qualcomm
-$(call inherit-product, device/qcom/common/common.mk)
+# Qualcomm common definitions are provided by AOSPA's aospa-target.mk
+# (vendor/aospa/target/product/aospa-target.mk inherits device/qcom/common/common.mk),
+# so they are not inherited here.
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
