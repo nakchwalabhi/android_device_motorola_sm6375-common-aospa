@@ -315,8 +315,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     qcrilNrDb_vendor
 
-PRODUCT_BOOT_JARS += \
-    telephony-ext
 
 # Thermal
 PRODUCT_PACKAGES += \
