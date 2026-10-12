@@ -147,6 +147,12 @@ include device/qcom/sepolicy_vndr/SEPolicy.mk
 include hardware/motorola/sepolicy/qti/SEPolicy.mk
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
+# Lineage sepolicy: provides hal_attribute_lineage and the lineage_* HAL
+# domains that the Motorola sepolicy augments (lineage touch/powershare).
+# AOSPA does not ship device/lineage/sepolicy or wire it in.
+-include device/lineage/sepolicy/common/sepolicy.mk
+-include device/lineage/sepolicy/qcom/sepolicy.mk
+
 # Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
