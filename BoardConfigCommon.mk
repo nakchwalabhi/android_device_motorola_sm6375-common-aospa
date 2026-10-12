@@ -187,3 +187,9 @@ KERNEL_DTBO_OUT := $(PRODUCT_OUT)/obj/kernel/motorola/sm6375
 $(PRODUCT_OUT)/prebuilt_dtbo.img: $(KERNEL_DTBO_OUT)/arch/arm64/boot/Image
 	@echo "Building dtbo.img from kernel overlays"
 	out/host/linux-x86/bin/mkdtimg create $@ --page_size=$(BOARD_KERNEL_PAGESIZE) $$(find $(KERNEL_DTBO_OUT)/arch/arm64/boot/dts -type f -name "*.dtbo" | sort)
+
+# Kernel image. build/make/core/Makefile sets INSTALLED_KERNEL_TARGET to
+# $(PRODUCT_OUT)/kernel, but the rule that creates it lives in
+# kernel_definitions.mk, which this tree never includes. Copy the built Image.
+$(PRODUCT_OUT)/kernel: $(KERNEL_DTBO_OUT)/arch/arm64/boot/Image
+	cp $< $@
